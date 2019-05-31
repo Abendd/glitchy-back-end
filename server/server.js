@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/',(req,res)=>{
+	res.send("it is working");
+})
 app.post('/register',(req,res)=>{
 	const {email,url} = req.body;
 	db('users').returning('*').insert({
