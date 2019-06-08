@@ -12,7 +12,7 @@ const db = require('knex')({
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors())
 
 app.get('/',(req,res)=>{
 	res.send("it is working");
@@ -29,6 +29,11 @@ app.post('/register',(req,res)=>{
 	.catch(err=>res.status(400).json('unable to register'))
 })
 
-app.listen(process.env.PORT || 3000,()=>{
-	console.log("app is running")
+app.get('/getData',(req,res)=>{
+	db.select('*').from('users')
+	.then(response => res.json(response))
+});
+
+app.listen(process.env.PORT || 4000,()=>{
+	console.log("app is running server")
 })
