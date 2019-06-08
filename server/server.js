@@ -19,7 +19,7 @@ app.get('/',(req,res)=>{
 })
 app.post('/register',(req,res)=>{
 	const {email,url} = req.body;
-	db('users').returning('*').insert({
+	db('tempUsers').returning('*').insert({
 		email:email,
 		url:url
 	})
@@ -30,7 +30,7 @@ app.post('/register',(req,res)=>{
 })
 
 app.get('/getData',(req,res)=>{
-	db.select('*').from('users')
+	db.select('*').from('tempUsers')
 	.then(response => res.json(response))
 });
 
